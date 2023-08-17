@@ -1,10 +1,11 @@
 export const globalOptions = {
-  name: "recipe-hub-42874",
-  url: "https://recipe-hub-42874.botics.co",
-  api: "https://recipe-hub-42874.botics.co/api/v1",
-  screenOptions: {
-    headerShown: false
-  }
+  "name": "recipe-hub-42874",
+  "url": "https://recipe-hub-42874.botics.co",
+  "api": "https://recipe-hub-42874.botics.co/api/v1",
+  "screenOptions": {
+    "headerShown": false
+  },
+  "initialRoute": "RecipeDetail"
 };
 export const modulesOptions = {
   "@modules/app-menu": {
