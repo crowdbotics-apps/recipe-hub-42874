@@ -16,7 +16,7 @@ const RecipeDetailScreen = () => {
 
   return <SafeAreaView style={styles.container}>
       <Image source={{
-      uri: recipe.image
+      uri: "https://www.southernliving.com/thmb/HSEUOjJVCl4kIRJRMAZ1eblQlWE=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/Millionaire_Spaghetti_019-34e9c04b1ae8405088f53450a048e413.jpg"
     }} style={styles.image} />
       <Text style={styles.name}>{recipe.name}</Text>
       <Text style={styles.sectionTitle}>Ingredients:</Text>
@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
     width: 200,
     height: 200,
     borderRadius: 10,
-    marginBottom: 20
+    marginBottom: 20,
   },
   name: {
     fontSize: 24,
