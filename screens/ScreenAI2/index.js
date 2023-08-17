@@ -1,10 +1,14 @@
+import { recipeconnector_get_api_v1_userrecipe_list } from "../../store/recipeconnector/recipeconnector_response_get_Listrecipes.slice.js";
+import { useDispatch } from "react-redux";
 import React, { useState, useEffect } from 'react';
 import { SafeAreaView, View, Text, FlatList, Image, StyleSheet } from 'react-native';
 
 const RecipeScreen = () => {
+  const dispatch = useDispatch();
   const [recipes, setRecipes] = useState([]);
   useEffect(() => {
     fetchRecipes();
+    dispatch(recipeconnector_get_api_v1_userrecipe_list());
   }, []);
 
   const fetchRecipes = () => {
