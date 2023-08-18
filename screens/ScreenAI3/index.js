@@ -1,30 +1,32 @@
 import React, { useState } from "react";
 import { Text, Image, TouchableOpacity, StyleSheet, SafeAreaView } from "react-native";
 
-const RecipeDetailScreen = () => {
+const RecipeDetailScreen = ({route}) => {
+
+
   const [isFavorite, setIsFavorite] = useState(false);
-  const recipe = {
-    name: "Delicious Pasta",
-    image: "https://tinyurl.com/42evm3m3",
-    ingredients: ["Pasta", "Tomatoes", "Garlic", "Olive Oil", "Basil"],
-    time_consume: "1. Cook pasta according to package instructions. \n2. In a pan, heat olive oil and sauté garlic until fragrant. \n3. Add tomatoes and cook until softened. \n4. Toss cooked pasta with the tomato sauce. \n5. Garnish with basil leaves and serve hot."
-  };
+
 
   const handleFavoritePress = () => {
     setIsFavorite(!isFavorite);
   };
 
+  const ingredients = route?.params?.data?.ingredients?.split(" ")
+
   return <SafeAreaView style={styles.container}>
       <Image source={{
       uri: "https://www.southernliving.com/thmb/HSEUOjJVCl4kIRJRMAZ1eblQlWE=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/Millionaire_Spaghetti_019-34e9c04b1ae8405088f53450a048e413.jpg"
     }} style={styles.image} />
-      <Text style={styles.name}>{recipe.name}</Text>
+      <Text style={styles.name}>{route?.params?.data?.title}</Text>
       <Text style={styles.sectionTitle}>Ingredients:</Text>
-      {recipe.ingredients.map((ingredient, index) => <Text key={index} style={styles.ingredient}>
+      {ingredients.map((ingredient, index) => <Text key={index} style={styles.ingredient}>
           {ingredient}
         </Text>)}
       <Text style={styles.sectionTitle}>Time Consume:</Text>
-      <Text style={styles.instructions}>{recipe.time_consume}</Text>
+      <Text style={styles.instructions}>{route?.params?.data?.time_consume}</Text>
+      <Text style={styles.sectionTitle}>Steps:</Text>
+    
+      <Text>{route?.params?.data?.steps}</Text>
       <TouchableOpacity style={[styles.favoriteButton, isFavorite ? styles.favoriteButtonActive : null]} onPress={handleFavoritePress}>
         <Text style={styles.favoriteButtonText}>
           {isFavorite ? "Remove from Favorites" : "Add to Favorites"}
@@ -70,7 +72,8 @@ const styles = StyleSheet.create({
     backgroundColor: "#ccc",
     paddingVertical: 10,
     paddingHorizontal: 20,
-    borderRadius: 5
+    borderRadius: 5,
+    marginTop:20
   },
   favoriteButtonActive: {
     backgroundColor: "#ff0000"

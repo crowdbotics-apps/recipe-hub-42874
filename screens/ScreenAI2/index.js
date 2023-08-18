@@ -8,7 +8,6 @@ const RecipeScreen = ({navigation}) => {
 
   const {entities} = useSelector((state) => state.Recipeconnector_response_get_Listrecipes)
 
-  console.log("test", entities)
 
   useEffect(() => {
     dispatch(recipeconnector_get_api_v1_userrecipe_list());
@@ -17,7 +16,7 @@ const RecipeScreen = ({navigation}) => {
 
   const renderRecipeItem = ({
     item
-  }) => <TouchableOpacity onPress={() => navigation.navigate("ScreenAI3")} style={styles.recipeItem}>
+  }) => <TouchableOpacity onPress={() => navigation.navigate("ScreenAI3", {data : item})} style={styles.recipeItem}>
       <Image source={{
         uri:"https://www.southernliving.com/thmb/HSEUOjJVCl4kIRJRMAZ1eblQlWE=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/Millionaire_Spaghetti_019-34e9c04b1ae8405088f53450a048e413.jpg"
       }} style={styles.recipeImage} />
