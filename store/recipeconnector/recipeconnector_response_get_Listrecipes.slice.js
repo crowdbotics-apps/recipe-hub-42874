@@ -14,24 +14,34 @@ const recipeconnector_response_get_ListrecipesSlice = createSlice({
   name: "recipeconnector_response_get_Listrecipes",
   initialState,
   reducers: {},
-  extraReducers: {
-    [recipeconnector_get_api_v1_userrecipe_list.pending]: (state, action) => {
-      if (state.api.loading === "idle") {
-        state.api.loading = "pending"
-      }
-    },
-    [recipeconnector_get_api_v1_userrecipe_list.fulfilled]: (state, action) => {
-      if (state.api.loading === "pending") {
-        state.entities = action.payload
-        state.api.loading = "idle"
-      }
-    },
-    [recipeconnector_get_api_v1_userrecipe_list.rejected]: (state, action) => {
-      if (state.api.loading === "pending") {
-        state.api.error = action.error
-        state.api.loading = "idle"
-      }
-    }
+  extraReducers: builder => {
+    builder
+      .addCase(
+        recipeconnector_get_api_v1_userrecipe_list.pending,
+        (state, action) => {
+          if (state.api.loading === "idle") {
+            state.api.loading = "pending"
+          }
+        }
+      )
+      .addCase(
+        recipeconnector_get_api_v1_userrecipe_list.fulfilled,
+        (state, action) => {
+          if (state.api.loading === "pending") {
+            state.entities = action.payload
+            state.api.loading = "idle"
+          }
+        }
+      )
+      .addCase(
+        recipeconnector_get_api_v1_userrecipe_list.rejected,
+        (state, action) => {
+          if (state.api.loading === "pending") {
+            state.api.error = action.error
+            state.api.loading = "idle"
+          }
+        }
+      )
   }
 })
 export default {
